@@ -7,11 +7,7 @@ const heartBurst = document.getElementById('heartBurst');
 const heartRain = document.getElementById('heartRain');
 
 const messages = [
-  'Love is coming...',
-  'The universe is preparing a surprise...',
-  'Brace yourself, emotions are about to detonate...',
-  'Love is getting closer with every second...',
-  'Tick-tock, love wont wait...'
+  '1 minute less! Love is coming...'
 ];
 
 const BURST_HEART_COUNT = 200;
