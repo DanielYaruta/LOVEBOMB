@@ -18,6 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .stage {
@@ -25,6 +26,7 @@ body {
   width: 1254px;
   max-width: 100vw;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
 .bg {
@@ -32,78 +34,109 @@ body {
   height: 100%;
   display: block;
   object-fit: cover;
+  user-select: none;
 }
 
-/* Screen overlay positioned over the bomb's center display */
+/* Screen on the bomb's chest, sized to stay inside the bezel */
 .screen {
   position: absolute;
-  left: 38.8%;
-  top: 54.4%;
-  width: 22.5%;
-  height: 18%;
+  left: 40.5%;
+  top: 56.5%;
+  width: 19%;
+  height: 14.5%;
   background: #060504;
-  border-radius: 6px;
+  border-radius: 4px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.9);
+  gap: 2%;
+  overflow: hidden;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.9);
 }
 
 .timer-display {
   font-family: 'Courier New', monospace;
   font-weight: 700;
-  font-size: clamp(14px, 3.6vw, 46px);
+  font-size: clamp(10px, 2.6vw, 34px);
   color: #ff3b30;
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 8px rgba(255, 59, 48, 0.85), 0 0 16px rgba(255, 59, 48, 0.5);
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 6px rgba(255, 59, 48, 0.85), 0 0 12px rgba(255, 59, 48, 0.5);
   user-select: none;
+  line-height: 1;
 }
 
 .timer-display.done {
-  font-size: clamp(9px, 1.9vw, 20px);
+  font-size: clamp(7px, 1.4vw, 16px);
   letter-spacing: 0.02em;
 }
 
-/* Controls panel below the image */
-.controls {
-  margin-top: 18px;
+.message-line {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(5px, 0.85vw, 10px);
+  color: #c9433a;
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.2;
+  min-height: 1.4em;
+  padding: 0 6%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  user-select: none;
+}
+
+.message-line.visible {
+  opacity: 1;
+}
+
+/* Control panel: a neat dock under the bomb's screen, on the bomb body itself */
+.control-panel {
+  position: absolute;
+  left: 40.5%;
+  top: 72.5%;
+  width: 19%;
+  height: 5.2%;
+  background: #0c0a09;
+  border: 1px solid #3a1f1c;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 4%;
+  padding: 0 4%;
 }
 
-.controls select,
-.controls button {
+.control-panel select,
+.control-panel button {
   font-family: 'Courier New', monospace;
-  font-size: 14px;
-  background: #060504;
+  font-size: clamp(6px, 1vw, 12px);
+  background: #1a1110;
   color: #ff5b50;
   border: 1px solid #4a1410;
-  border-radius: 4px;
-  padding: 8px 14px;
+  border-radius: 3px;
+  padding: 2% 4%;
   cursor: pointer;
+  height: 70%;
 }
 
-.controls button {
+.control-panel button {
   background: #ff3b30;
   color: #1a0e0c;
   font-weight: 700;
   border: none;
 }
 
-.controls button:disabled {
+.control-panel button:disabled {
   background: #5a3530;
   color: #8a6a65;
   cursor: not-allowed;
 }
 
-.controls button:hover:not(:disabled) {
+.control-panel button:hover:not(:disabled) {
   background: #ff5b50;
 }
 
-/* Falling hearts */
+/* Hearts exploding outward from the bomb's screen */
 .heart-burst {
   position: absolute;
   top: 0;
@@ -114,10 +147,37 @@ body {
   overflow: hidden;
 }
 
-.falling-heart {
+.burst-heart {
+  position: absolute;
+  left: 50%;
+  top: 63%;
+  font-size: 14px;
+  color: #ff3b30;
+  animation: burst ease-out forwards;
+  user-select: none;
+}
+
+@keyframes burst {
+  to {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* Hearts raining down over the whole image */
+.heart-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rain-heart {
   position: absolute;
   top: -8%;
-  font-size: 28px;
   color: #ff3b30;
   animation: fall linear forwards;
   user-select: none;
