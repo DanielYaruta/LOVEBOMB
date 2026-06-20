@@ -11,21 +11,20 @@
 <div class="wrapper">
   <div class="stage">
     <img class="bg" src="lovebomb.png" alt="Плюшевый мишка с бомбой любви">
+
     <div class="screen">
       <div class="timer-display" id="timerDisplay">5:00</div>
+      <div class="message-line" id="messageLine"></div>
     </div>
-    <div class="heart-burst" id="heartBurst"></div>
-  </div>
 
-  <div class="controls">
-    <select id="minutesSelect">
-      <option value="1">1 мин</option>
-      <option value="2">2 мин</option>
-      <option value="5" selected>5 мин</option>
-      <option value="10">10 мин</option>
-    </select>
-    <button id="startBtn">Запустить LOVEBOMB</button>
-    <button id="resetBtn" disabled>Сброс</button>
+    <div class="control-panel">
+      <select id="minutesSelect"></select>
+      <button id="startBtn">Старт</button>
+      <button id="resetBtn" disabled>Сброс</button>
+    </div>
+
+    <div class="heart-burst" id="heartBurst"></div>
+    <div class="heart-rain" id="heartRain"></div>
   </div>
 </div>
 
