@@ -73,7 +73,7 @@ body {
 
 .message-line {
   font-family: 'Courier New', monospace;
-  font-size: clamp(5px, 0.85vw, 10px);
+  font-size: clamp(10px, 1.7vw, 20px);
   color: #c9433a;
   letter-spacing: 0.02em;
   text-align: center;
