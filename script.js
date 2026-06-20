@@ -78,8 +78,8 @@ function startCountdown(minutes) {
     if (totalSeconds <= 0) {
       clearInterval(intervalId);
       timerDisplay.classList.add('done');
-      timerDisplay.textContent = 'Бум!';
-      showScreenMessage('Любовь взорвалась!');
+      timerDisplay.textContent = 'BOOM!';
+      showScreenMessage('Love Exploded!');
       triggerHeartBurst();
       triggerHeartRain();
     }
